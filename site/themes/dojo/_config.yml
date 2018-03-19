@@ -1,0 +1,36 @@
+# Header
+menu:
+  Tutorials: /tutorials
+  #Community: /community
+  Blog: /blog
+rss: /atom.xml
+
+
+# Content
+excerpt_link: Read More
+fancybox: false
+
+# Sidebar
+sidebar: false
+widgets:
+- category
+- tag
+- tagcloud
+- archive
+- recent_posts
+
+# display widgets at the bottom of index pages (pagination == 2)
+index_widgets:
+# - category
+# - tagcloud
+# - archive
+
+# widget behavior
+archive_type: 'monthly'
+show_count: false
+
+# Miscellaneous
+google_analytics: UA-3242977-15
+favicon: /images/favicons/favicon.ico
+twitter: https://twitter.com/dojo
+github: https://github.com/dojo/meta
