@@ -6,19 +6,7 @@ before_install:
 - npm install @dojo/cli grunt-cli typings -g
 env:
   - TUTORIAL=001_static_content
-  - TUTORIAL=002_creating_an_application
-  - TUTORIAL=003_creating_widgets
-  - TUTORIAL=004_user_interactions
-  - TUTORIAL=005_form_widgets
-  - TUTORIAL=006_deploying_to_production
-  - TUTORIAL=006_containers_and_injecting_state
-  - TUTORIAL=007_theming
-  - TUTORIAL=1010_containers_and_injecting_state
-  - TUTORIAL=1015_form_validation
-  - TUTORIAL=1020_registries
-  - TUTORIAL=1030_routing
-  - TUTORIAL=1050_development_environment
-  - TUTORIAL=1060_data_driven_widgets
+
 script:
   - pushd .
   - 'if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then
@@ -50,6 +38,3 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
-notifications:
-  slack:
-    secure: pa7a/RNr73mJwoWK1Ho5FbZNV59jB3HoK4v6LOgk2Yz2eB+tyDDppserU3JLSFntg73e5zshU1cne7CR+rgEJCQDLFYr9sl5FMw8hkveXYdaI/uq3pyWF5hkAScI6jVjl5soWSnMc5UCMpOmKeddFkPtDcyAWkrTpTUqHlubEgUpP7pezVqd/vESvZhwFXRrBkZGsDdm+fNLKql8ph1sZlGT/K1B9inkWAfxPnGGJVNrVBffwZPjr4gOn06dW7qgN9uljOBF3iI3xNfTjyQIb2/7ysvsO7qOXzIxV5o1TICYCm616m5+zwC7CfVYfHDR9FiKfQlg+nTtwc4Cyyy5+akw7i7/Urw0ORfU7QQf8felMadsLgjf6Qii2MApBYqryWzh9fTwjYLckOLERnPTtzqV3GmiSFvQvjODdYuW53mUKcBbd+3HBQACF9hAZhBdwj1dsoQkbnHD/hKeZLo2GupyonB3XPdTcEofmJNR+ljBJxQ/oyLZ31xdGZ8PuCDWpBfPNIr53LxloSJwfSqQ5Li2oSQtP99g1I/hoTjQXO5Y5kxDrax7pnY7PmsjH4Hp4RSRgkcMYB3eTuQnLedRC5HTDB4y+dBcJ44Qmw/5ooVlxAuRiTOx51ZVkUbgRdj4k3X6P4F55du+uYt8QRy5sZadeSvcypmNxoytgQaj5y0=
