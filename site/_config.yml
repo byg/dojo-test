@@ -12,8 +12,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://dojo.github.io
-root: /
+url: https://byg.github.io
+root: /dojo-test
 permalink: blog/:year/:month/:day/:title/
 permalink_defaults:
 
@@ -44,23 +44,23 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-	enable: false
-	line_number: false
-	auto_detect: true
-	tab_replace:
+  enable: false
+  line_number: false
+  auto_detect: true
+  tab_replace:
 
 prism_plugin:
-	mode: 'preprocess'    # realtime/preprocess
-	theme: 'ghcolors'
-	line_number: false    # default false
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'ghcolors'
+  line_number: false    # default false
 
 # Authors
 authors:
-	default:
-		name: The Dojo Team
-	dylan:
-		name: Dylan Schiemann
-		email: dylan@sitepen.com
+  default:
+    name: The Dojo Team
+  dylan:
+    name: Dylan Schiemann
+    email: dylan@sitepen.com
   kitsonk:
     name: Kitson Kelly
     email: kkelly@sitepen.com
@@ -121,12 +121,12 @@ hfc_favicons:
   enable: false
 # Sass
 node_sass:
-	outputStyle: nested
-	precision: 5
-	sourceComments: false
-	includePaths:
-		- node_modules/bulma
-		- node_modules/
+  outputStyle: nested
+  precision: 5
+  sourceComments: false
+  includePaths:
+    - node_modules/bulma
+    - node_modules/
 
 
 
@@ -155,8 +155,8 @@ theme: dojo
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-	type: git
-	repo: https://github.com/dojo/dojo.io.git
-	branch: gh-pages
+  type: git
+  repo: git@github.com:byg/dojo-test.git
+  branch: gh-pages
 
 
