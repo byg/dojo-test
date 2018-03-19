@@ -46,7 +46,6 @@ html-report
 .ghpublish
 .apitemp
 /site/bower_components
-/deploy_key
 /deploy_key.pub
 /support/**/*.js
 /.test
