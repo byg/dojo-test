@@ -48,7 +48,6 @@ html-report
 /site/bower_components
 /deploy_key
 /deploy_key.pub
-/deploy_key.enc
 /support/**/*.js
 /.test
 /site/_overrides.json
