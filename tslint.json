@@ -1,5 +1,0 @@
-{
-	"extends": "tslint-sitepen/tslint-dojo1",
-	"rules": {
-	}
-}
