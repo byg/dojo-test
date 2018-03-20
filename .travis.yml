@@ -35,7 +35,7 @@ jobs:
     - grunt ci
 deploy:
   provider: script
-  script: grunt publish && pwd && cd _dist && git push
+  script: grunt publish && pwd && cd _dist && ls -al && git push
   skip_cleanup: true
   on:
     branch: master
