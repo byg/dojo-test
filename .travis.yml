@@ -3,39 +3,33 @@ language: node_js
 node_js:
 - 6
 before_install:
+- openssl aes-256-cbc -K $encrypted_0bc5830563b8_key -iv $encrypted_0bc5830563b8_iv
+  -in deploy_key.enc -out deploy_key -d
 - npm install @dojo/cli grunt-cli typings -g
 env:
-  - TUTORIAL=001_static_content
-
+- TUTORIAL=001_static_content
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 script:
-  - pushd .
-  - 'if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then
-       cd site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp || travis_terminate 1;
-       npm install || travis_terminate 1;
-       npm run build || travis_terminate 1;
-     fi'
-  - popd
-  - pushd .
-  - 'if [ -d "site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp" ]; then
-       cd site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp || travis_terminate 1;
-       npm install || travis_terminate 1;
-       npm run build || travis_terminate 1;
-       npm test || travis_terminate 1;
-     fi'
-  - popd
-
+- pushd .
+- if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then cd site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp
+  || travis_terminate 1; npm install || travis_terminate 1; npm run build || travis_terminate
+  1; fi
+- popd
+- pushd .
+- if [ -d "site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp" ]; then cd site/source/tutorials/$TUTORIAL/demo/finished/biz-e-corp
+  || travis_terminate 1; npm install || travis_terminate 1; npm run build || travis_terminate
+  1; npm test || travis_terminate 1; fi
+- popd
 jobs:
   include:
     stage: Test site
     env:
-      - TUTORIAL=N/A
+    - TUTORIAL=N/A
     script:
-      - grunt test
-      - grunt ci
+    - grunt test
+    - grunt ci
 deploy:
   provider: script
   script: grunt publish && cd _dist && git push
