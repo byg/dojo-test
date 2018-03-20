@@ -35,9 +35,7 @@ jobs:
     - grunt ci
 deploy:
   provider: script
-  script: 
-  - grunt publish 
-  - cd _dist && git add . && git commit -m 'travis push' && git push
+  script: grunt publish && cd _dist && ls -al && git add . && git commit -m 'travis push' && git push
   skip_cleanup: true
   on:
     branch: master
