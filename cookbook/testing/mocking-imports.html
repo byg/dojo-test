@@ -1,0 +1,74 @@
+<h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><p>This recipe demonstrates one technique of:</p>
+<ol>
+<li>Testing functionality in your widgets</li>
+<li>Mocking imports which your widget relies upon</li>
+</ol>
+<p>Note: This recipe demonstrates a vanilla approach of testing. It does not leverage the built-in testing ecosystem offered by Dojo 2 out of the box.</p>
+<h2 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h2><ol>
+<li>Create your widget:</li>
+</ol>
+<pre><code class="js">const { w } = require(&#39;@dojo/widget-core/d&#39;);
+const { WidgetBase } = require(&#39;@dojo/widget-core/WidgetBase&#39;);
+const MyCustomWidget = require(&#39;./MyCustomWidget&#39;);
+
+class HelloWorld extends WidgetBase {
+    render() {
+        return w(MyCustomWidget, {
+            onclick: () =&gt; {
+                this.invalidate();
+            }
+        });
+    }
+}
+
+module.exports = HelloWorld;
+</code></pre>
+<ol>
+<li>Import the dependencies for your test. This is the start of a new test file which has only one external dependency: <code>proxyquire</code>. The <code>proxyquire</code> module intercepts all of your module imports in a file, <code>proxyquire</code> then offers an API to mock each of these imports for the purpose of test isolation.</li>
+</ol>
+<pre><code class="js">const assert = require(&#39;assert&#39;);
+const proxyquire = require(&#39;proxyquire&#39;).noCallThru();
+</code></pre>
+<ol>
+<li>Provide the stubs:</li>
+</ol>
+<pre><code class="js">let invalidateCalled = false;
+
+const stubs = {
+    &#39;@dojo/widget-core/d&#39;: {
+        w(...args) {
+            return args;
+        }
+    },
+    &#39;@dojo/widget-core/WidgetBase&#39;: {
+        WidgetBase: class {
+            invalidate() {
+                invalidateCalled = true;
+            }
+        }
+    },
+    &#39;./MyCustomWidget&#39;() {}
+};
+
+</code></pre>
+<p>These stubs are used in place of the actual imports. The stubs are key/value pairs:</p>
+<ul>
+<li><code>key</code>: A string which represents the string identifier used in the original import</li>
+<li><code>value</code>: A data type which is returned in place of the original imported module</li>
+</ul>
+<ol>
+<li>Within your test file, require your widget through the <code>proxyquire</code> API and pass in the necessary stubs as defined in step 3:</li>
+</ol>
+<pre><code class="js">const HelloWorld = proxyquire(&#39;./HelloWorld&#39;, stubs);
+</code></pre>
+<ol>
+<li>Invoke the necessary methods on your widget so you can make assertions:</li>
+</ol>
+<pre><code class="js">const widget = new HelloWorld();
+const render = widget.render();
+
+assert.equal(invalidateCalled, false);
+render[1].onclick();
+assert.equal(invalidateCalled, true);
+</code></pre>
+<h2 id="Additional-resources"><a href="#Additional-resources" class="headerlink" title="Additional resources"></a>Additional resources</h2><p><a href="https://theintern.io/" target="_blank" rel="noopener">Intern</a> is a feature rich testing framework which is bundled with Dojo 2 apps by default.</p>
