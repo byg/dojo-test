@@ -7,6 +7,10 @@ before_install:
 env:
   - TUTORIAL=001_static_content
 
+cache:
+  directories:
+    - node_modules
+
 script:
   - pushd .
   - 'if [ -d "site/source/tutorials/$TUTORIAL/demo/initial/biz-e-corp" ]; then
